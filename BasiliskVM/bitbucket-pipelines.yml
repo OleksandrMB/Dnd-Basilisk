@@ -1,0 +1,11 @@
+pipelines:
+  pull-requests:
+    feature/*:
+      - step:
+          name: 'Install dependencies and run linter'
+          image: node:18.12.0
+          script:
+            - export SKIP_ENV_VALIDATION=true
+            - node -v
+            - yarn install --froze-lockfile
+            - yarn lint
